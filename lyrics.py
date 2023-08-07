@@ -47,7 +47,7 @@ def main():
     schedule.every(30).minutes.do(post_lyrics_as_tweet) 
     while True:
         schedule.run_pending()
-        time.sleep(1)
+        time.sleep(30) #sleep for 30 sec to avoid exceeding rate limits
 
 if __name__ == "__main__":
     main()
