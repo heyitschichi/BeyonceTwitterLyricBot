@@ -37,7 +37,7 @@ def post_lyrics_as_tweet():
         tweet = f"{random_line}"
         try:
             response = Client.create_tweet(text=tweet)
-            print(response)
+            print(response) 
             print("Tweet posted successfully!")
         except tweepy.error.TweepError as e:  
             print(f"Error posting tweet: {e}")
