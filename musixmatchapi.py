@@ -48,7 +48,7 @@ def get_random_song():
         return None
 
     #Retrieve f_artist_id for the artist you want
-    artist_id = get_artist_id_by_name("Drake") #change this to any artist name you want
+    artist_id = get_artist_id_by_name("Beyoncé") #change this to any artist name you want
     if not artist_id:
         print("Failed to retrieve the f_artist_id.")
         return None
