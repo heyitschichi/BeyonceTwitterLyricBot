@@ -56,7 +56,7 @@ def get_random_song():
     params = {
         "apikey": api_key,
         "f_artist_id": artist_id,
-        "page_size": 100,  #Adjust this value for the number of results you want 
+        "page_size": 100,  #Adjust this value for the number of results you want (goes from 0-100, read musixmatch api docs)
         #"s_track_rating": "desc", (popularity rating, read musixmatch api docs)
     }
 
@@ -98,6 +98,7 @@ def get_lyrics(track_id):
     
     return None
 
+#this is just personal prefrence, dont **need** this function, although may use it for future uses
 def clean_track_name(track_name):  #Check if the track name contains "(feat." or "(With" 
     feat_index = track_name.find("(feat.")
     with_index = track_name.find("(With")
