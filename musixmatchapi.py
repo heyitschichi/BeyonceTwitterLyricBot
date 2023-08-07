@@ -5,8 +5,11 @@ from dotenv import load_dotenv # Install the `python-dotenv` library
 
 load_dotenv()
 
+API_KEY = os.getenv("MUSIXMATCH_API_KEY")
 def get_api_key():
-    return os.getenv("MUSIXMATCH_API_KEY") #sign up for musixmatch developer & get an api key
+    if not API_KEY:
+        print("Musixmatch API key not found. Make sure you set the MUSIXMATCH_API_KEY environment variable.")
+    return API_KEY
 
 #function assures we get the artist we want and artists who are mononymous won't get mixed up with artists of the same name but a diff last name
 def get_artist_id_by_name(artist_name): 
@@ -118,7 +121,6 @@ def clean_track_name(track_name):  #Check if the track name contains "(feat." or
 
     return clean_name
 
-
 def get_random_lyric(lyrics):  #Extract lines from the lyrics and filter out the disclaimer line and lines w/ just one word
     lines = lyrics.split("\n")
     clean_lines = [line.strip() for line in lines if line.strip() != "******* This Lyrics is NOT for Commercial use *******" and "..." not in line.strip() and len(line.strip().split()) > 1]
@@ -132,6 +134,12 @@ def get_random_lyric(lyrics):  #Extract lines from the lyrics and filter out the
     return random_line
 
 def main():
+    api_key = get_api_key() #get API key
+
+    if not api_key:
+        print("No API key found.")
+        return
+    
     song_info = get_random_song()  #Get a random song
 
     if song_info is None:
