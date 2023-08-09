@@ -2,7 +2,7 @@ import os
 import requests
 import random
 from dotenv import load_dotenv # Install the `python-dotenv` library 
-
+random.seed()  # Initialize random seed to prevent repeated songs so often
 load_dotenv()
 
 API_KEY = os.getenv("MUSIXMATCH_API_KEY")
@@ -27,7 +27,7 @@ def get_artist_id_by_name(artist_name):
 
     response = requests.get(base_url + "artist.search", params=params)
     data = response.json()
-
+    #print(data)
     if "message" in data and "body" in data["message"] and "artist_list" in data["message"]["body"]:
         artist_list = data["message"]["body"]["artist_list"]
 
@@ -41,26 +41,37 @@ def get_artist_id_by_name(artist_name):
 
     return None
 
-def get_random_song():
+MAIN_ALBUMS = [ #to prevent remixes/live versions of songs from showing up 
+    "Dangerously in Love",
+    "B'Day",
+    "I Am... Sasha Fierce",
+    "4",
+    "Beyoncé",
+    "Lemonade",
+    #"The Lion King: The Gift",
+    "Renaissance",
+]
+
+def get_random_song_from_main_albums():
     api_key = get_api_key()
     if not api_key:
         print("Musixmatch API key not found. Make sure you set the MUSIXMATCH_API_KEY environment variable.")
         return None
 
-    #Retrieve f_artist_id for the artist you want
-    artist_id = get_artist_id_by_name("Beyoncé") #change this to any artist name you want
+    # Retrieve f_artist_id for the artist you want
+    artist_id = get_artist_id_by_name("Beyoncé")
     if not artist_id:
         print("Failed to retrieve the f_artist_id.")
         return None
 
     base_url = "http://api.musixmatch.com/ws/1.1/"
 
-    #Get the track list 
+    # Get the track list from main albums
     params = {
         "apikey": api_key,
         "f_artist_id": artist_id,
-        "page_size": 100,  #Adjust this value for the number of results you want (goes from 0-100, read musixmatch api docs)
-        #"s_track_rating": "desc", (popularity rating, read musixmatch api docs)
+        "page_size": 100,
+        "s_track_rating": "desc",
     }
 
     response = requests.get(base_url + "track.search", params=params)
@@ -71,9 +82,18 @@ def get_random_song():
 
         if not track_list:
             return None
+        
+        # Filter tracks from the main albums
+        main_album_tracks = [
+            track for track in track_list
+            if any(album in track["track"]["album_name"] for album in MAIN_ALBUMS)
+        ]
 
-        #Choose a random track from the list
-        random_track = random.choice(track_list)
+        if not main_album_tracks:
+            return None
+
+        # Choose a random track from the main album tracks
+        random_track = random.choice(main_album_tracks)
 
         return random_track["track"]["track_id"], random_track["track"]["track_name"]
 
@@ -140,7 +160,7 @@ def main():
         print("No API key found.")
         return
     
-    song_info = get_random_song()  #Get a random song
+    song_info = get_random_song_from_main_albums()
 
     if song_info is None:
         print("No songs were found.")
