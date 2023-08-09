@@ -33,12 +33,11 @@ def post_lyrics_as_tweet():
     random_line = get_random_lyric(lyrics)
     if random_line:
         tweet = f"{random_line}"
-        try:
-            response = Client.create_tweet(text=tweet)
-            print(response) 
-            print("Tweet posted successfully!")
-        except tweepy.TweepError as e:  
-            print(f"Error posting tweet: {e}")
+        
+        response = Client.create_tweet(text=tweet)
+        print(response) 
+        print("Tweet posted successfully!")
+       
 
 if __name__ == "__main__":
     post_lyrics_as_tweet()
