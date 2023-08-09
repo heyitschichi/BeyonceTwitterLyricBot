@@ -44,7 +44,7 @@ def post_lyrics_as_tweet():
 
 #due to limited tweets of 1500/month of the free version twitter api, this number should NOT go below 20 minutes
 def main():
-    schedule.every(1).minutes.do(post_lyrics_as_tweet) 
+    schedule.every(30).minutes.do(post_lyrics_as_tweet) 
     while True:
         schedule.run_pending()
         time.sleep(30) #sleep for 30 sec to avoid exceeding rate limits
