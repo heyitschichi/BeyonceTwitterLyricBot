@@ -1,13 +1,11 @@
 import os
-import schedule
-import time
 from dotenv import load_dotenv
 import tweepy
 from musixmatchapi import get_random_song_from_main_albums, clean_track_name, get_lyrics, get_random_lyric
 
 load_dotenv()
 
-def get_twitter_api(): #Get Twitter API keys and access tokens from environment variables
+def get_twitter_api():
     consumer_key = os.getenv("CONSUMER_KEY")
     consumer_secret = os.getenv("CONSUMER_SECRET")
     access_token = os.getenv("ACCESS_TOKEN")
@@ -42,15 +40,9 @@ def post_lyrics_as_tweet():
         except tweepy.error.TweepError as e:  
             print(f"Error posting tweet: {e}")
 
-#due to limited tweets of 1500/month of the free version twitter api, this number should NOT go below 20 minutes
-def main():
-    schedule.every(30).minutes.do(post_lyrics_as_tweet) 
-    while True:
-        schedule.run_pending()
-        time.sleep(30) #sleep for 30 sec to avoid exceeding rate limits
-
 if __name__ == "__main__":
-    main()
+    post_lyrics_as_tweet()
+
 
 
 
