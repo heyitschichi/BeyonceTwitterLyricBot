@@ -3,7 +3,7 @@ import schedule
 import time
 from dotenv import load_dotenv
 import tweepy
-from musixmatchapi import get_random_song, clean_track_name, get_lyrics, get_random_lyric
+from musixmatchapi import get_random_song_from_main_albums, clean_track_name, get_lyrics, get_random_lyric
 
 load_dotenv()
 
@@ -19,7 +19,7 @@ def get_twitter_api(): #Get Twitter API keys and access tokens from environment 
 def post_lyrics_as_tweet():
     Client = get_twitter_api()
 
-    song_info = get_random_song()
+    song_info = get_random_song_from_main_albums()
     if song_info is None:
         print("No songs were found.")
         return
@@ -44,7 +44,7 @@ def post_lyrics_as_tweet():
 
 #due to limited tweets of 1500/month of the free version twitter api, this number should NOT go below 20 minutes
 def main():
-    schedule.every(30).minutes.do(post_lyrics_as_tweet) 
+    schedule.every(1).minutes.do(post_lyrics_as_tweet) 
     while True:
         schedule.run_pending()
         time.sleep(30) #sleep for 30 sec to avoid exceeding rate limits

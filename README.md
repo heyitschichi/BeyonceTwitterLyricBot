@@ -1,38 +1,28 @@
-# The OVO⁶ Lyric Bot 
+# BeyHive Lyric Bot 🐝
 
-## Description
+**BeyLyric Bot** is your go-to source for a dose of Beyoncé's musical brilliance sprinkled with a touch of humor and randomness. This little Twitter bot dances to the beats of Beyoncé's discography, sharing lyrics that will make you smile, groove, and maybe even laugh out loud! 🎤🕺
 
-Hey there! Ready to get your daily dose of Drake wisdom? Introducing the **The OVO⁶ Lyric Bot** - your friendly, lyrical neighborhood bot delivering Drake lines right to your timeline every 30 minutes! 🕒🎤
+## What's the Buzz? 
 
-## How It Works
+Do you find yourself in need of some Beyoncé magic to brighten up your day? Look no further! **BeyLyric Bot** is here to make your timeline pop with spontaneous Beyoncé lyrics every 30 minutes. Whether you're scrolling through Twitter on a break or just need a musical pick-me-up, this bot will serve you some Queen Bey vibes that'll have you feeling fierce in no time.
 
-Powered by the awesome `tweepy` library and the magical **Musixmatch API**, our bot effortlessly crafts tweets with Drake's lyrics, ensuring you're always vibin' to the rhythm of the 6ix God himself.
+## How It Works 🎵
 
-## Features
+**BeyLyric Bot** gets its lyrical inspiration from Beyoncé's iconic albums, including "Dangerously in Love," "B'Day," "Lemonade," and more! Using the power of the **Musixmatch API**, it carefully selects a random song lyric that's sure to tug at your heartstrings. 
 
-- Tweets the most iconic Drake lyrics every half-hour! 🕒🎶
-- Curated collection of Drake's best verses to brighten your day.
-- Seamlessly combines music and coding for an unforgettable experience.
-- Drake-powered. Need we say more?
+And hey, remember that the free version of the Musixmatch API provides about 30% of the lyrics. We're just here to spread some lyrical love, so go easy on us if you don't always get the full chorus! 🎶
 
-## Musixmatch API - Unleash the 30% Magic
+## Let the Lyrics Flow 📜
 
-Beware, dear user! While our bot is generous with the lyrical goodness, the **free version** of the Musixmatch API has its limits. You'll be getting a tantalizing taste of the lyrics, covering a magnificent **30%** of the full masterpiece. If you're craving the full Drake lyrical feast, consider leveling up to a premium API plan. But don't worry, our bot will still make sure those 30% are the most lit 30% you've ever seen! 🔥
+Every lyric shared by **BeyLyric Bot** is handpicked to capture the essence of Beyoncé's music. From sassy one-liners to soul-stirring verses, you'll experience a rollercoaster of emotions, just like a Beyoncé concert. So, keep an eye on your Twitter feed and be ready to groove to the rhythm of unexpected lyrical delights.
 
-## Installation
+## Join the BeyHive! 🐝
 
+Are you ready to embark on a lyrical journey with **BeyLyric Bot**? Follow us on Twitter [@beylyricbot_](https://twitter.com/beylyricbot_) and let the lyrics wash over you, reminding you of the power and artistry of Queen Bey herself. Who knows, you might even discover a new favorite lyric that speaks to your soul!
 
-1. Clone this repo - 
-2. Install the required libraries - 
-3. Sign up for a **Musixmatch API** account and get your API key.
-4. Sign up for a Twitter Developer account and get your API keys.
+So, hit that follow button and get ready to fill your timeline with a touch of Beyoncé's enchanting melodies. After all, as Beyoncé once said, "Who run the world? Girls!" And in this case, a Twitter bot with a knack for delivering the perfect musical snippet.
 
-## Stay in Touch
-
-Follow my lyrical bot on Twitter [@ovolyricbot](https://twitter.com/ovolyricbot) for your daily dose of Drake! And remember, the bot's got **30%** of the magic, but it's a full **100%** of the fun!
+**Stay fierce, stay fabulous, and let the Beyoncé lyrics light up your day with BeyLyric Bot!** 🌟🎤
 
 ---
-
-*"Started from the bottom, now we're here" - Drake* 🚀
-
-**Disclaimer:** This project is not affiliated with Drake, Twitter, or any API providers. It's just a girl having fun! 😄🎈
+**Disclaimer:** This project is not affiliated with Beyoncé, Twitter, or any API providers. Lyrics are for entertainment purposes only, and the availability of lyrics are subject to the limitations of the Musixmatch API.* It's just a girl having fun! 😄🎈

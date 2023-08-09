@@ -141,9 +141,9 @@ def clean_track_name(track_name):  #Check if the track name contains "(feat." or
 
     return clean_name
 
-def get_random_lyric(lyrics):  #Extract lines from the lyrics and filter out the disclaimer line and lines w/ just one word
+def get_random_lyric(lyrics):  #Extract lines from the lyrics and filter out the disclaimer line and lines w/ just three words
     lines = lyrics.split("\n")
-    clean_lines = [line.strip() for line in lines if line.strip() != "******* This Lyrics is NOT for Commercial use *******" and "..." not in line.strip() and len(line.strip().split()) > 1]
+    clean_lines = [line.strip() for line in lines if line.strip() != "******* This Lyrics is NOT for Commercial use *******" and "..." not in line.strip() and len(line.strip().split()) > 3]
 
     if not clean_lines:
         print("No lyrics found.")
