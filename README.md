@@ -18,7 +18,7 @@ Every lyric shared by **BeyLyric Bot** is handpicked to capture the essence of B
 
 ## Join the BeyHive! 🐝
 
-Are you ready to embark on a lyrical journey with **BeyLyric Bot**? Follow us on Twitter [@beylyricbot_](https://twitter.com/beylyricbot_) and let the lyrics wash over you, reminding you of the power and artistry of Queen Bey herself. Who knows, you might even discover a new favorite lyric that speaks to your soul!
+Are you ready to embark on a lyrical journey with **BeyLyric Bot**? Follow us on Twitter [@beylyricbot_](https://twitter.com/beyonceIyrics) and let the lyrics wash over you, reminding you of the power and artistry of Queen Bey herself. Who knows, you might even discover a new favorite lyric that speaks to your soul!
 
 So, hit that follow button and get ready to fill your timeline with a touch of Beyoncé's enchanting melodies. After all, as Beyoncé once said, "Who run the world? Girls!" And in this case, a Twitter bot with a knack for delivering the perfect musical snippet.
 

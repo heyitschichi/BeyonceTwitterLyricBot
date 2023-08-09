@@ -1,0 +1,36 @@
+name: Twitter Bot
+
+on:
+  push:
+    branches:
+      - main  
+
+jobs:
+  run_bot:
+    runs-on: windows-latest  
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.11.3
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Set Musixmatch API key
+        run: echo "MUSIXMATCH_API_KEY=${{ secrets.MUSIXMATCH_API_KEY }}" >> $GITHUB_ENV
+
+      - name: Run Twitter Bot
+        run: python lyrics.py
+        env:
+          CONSUMER_KEY: ${{ secrets.CONSUMER_KEY }}
+          CONSUMER_SECRET: ${{ secrets.CONSUMER_SECRET }}
+          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+          ACCESS_TOKEN_SECRET: ${{ secrets.ACCESS_TOKEN_SECRET }}
+
