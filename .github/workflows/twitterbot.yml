@@ -1,6 +1,8 @@
 name: Twitter Bot
 
 on:
+  schedule:
+    - cron: '*/30 * * * *'
   push:
     branches: [main]
 
