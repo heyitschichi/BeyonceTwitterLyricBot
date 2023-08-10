@@ -76,6 +76,7 @@ def get_random_song_from_main_albums():
 
     response = requests.get(base_url + "track.search", params=params)
     data = response.json()
+    
 
     if "message" in data and "body" in data["message"] and "track_list" in data["message"]["body"]:
         track_list = data["message"]["body"]["track_list"]
