@@ -1,6 +1,6 @@
 # BeyHive Lyric Bot 🐝
 
-**BeyLyric Bot** is your go-to source for a dose of Beyoncé's musical brilliance sprinkled with a touch of humor and randomness. This little Twitter bot dances to the beats of Beyoncé's discography, sharing lyrics that will make you smile, groove, and maybe even laugh out loud! 🎤🕺
+**The BeyHive Bot** is your go-to source for a dose of Beyoncé's musical brilliance sprinkled with a touch of humor and randomness. This little Twitter bot dances to the beats of Beyoncé's discography, sharing lyrics that will make you smile, groove, and maybe even laugh out loud! 🎤🕺
 
 ## What's the Buzz? 
 
