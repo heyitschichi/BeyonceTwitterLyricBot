@@ -9,6 +9,12 @@ on:
 jobs:
   run_bot:
     runs-on: windows-latest  
+    env:
+          CONSUMER_KEY: ${{ secrets.CONSUMER_KEY }}
+          CONSUMER_SECRET: ${{ secrets.CONSUMER_SECRET }}
+          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+          ACCESS_TOKEN_SECRET: ${{ secrets.ACCESS_TOKEN_SECRET }}
+          MUSIXMATCH_API_KEY: ${{ secrets.MUSIXMATCH_API_KEY }}
     
     steps:
       - name: Checkout code
@@ -32,12 +38,6 @@ jobs:
           echo "ACCESS_TOKEN_SECRET: $ACCESS_TOKEN_SECRET"
 
       - name: Run Twitter Bot
-        env:
-          CONSUMER_KEY: ${{ secrets.CONSUMER_KEY }}
-          CONSUMER_SECRET: ${{ secrets.CONSUMER_SECRET }}
-          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-          ACCESS_TOKEN_SECRET: ${{ secrets.ACCESS_TOKEN_SECRET }}
-          MUSIXMATCH_API_KEY: ${{ secrets.MUSIXMATCH_API_KEY }}
         run: python lyrics.py
 
 
