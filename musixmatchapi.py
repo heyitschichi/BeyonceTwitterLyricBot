@@ -28,6 +28,7 @@ def get_artist_id_by_name(artist_name):
     response = requests.get(base_url + "artist.search", params=params)
     data = response.json()
     #print(data)
+    
     if "message" in data and "body" in data["message"] and "artist_list" in data["message"]["body"]:
         artist_list = data["message"]["body"]["artist_list"]
 
@@ -155,7 +156,11 @@ def get_random_lyric(lyrics):  #Extract lines from the lyrics and filter out the
     return random_line
 
 def main():
+    #print("Before loading .env")
+    #load_dotenv()  # Check if .env is loaded correctly
+
     api_key = get_api_key() #get API key
+    #print(f"API Key: {api_key}")  
 
     if not api_key:
         print("No API key found.")
