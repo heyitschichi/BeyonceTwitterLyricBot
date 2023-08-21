@@ -1,6 +1,8 @@
 import os
 from dotenv import load_dotenv
 import tweepy
+import time
+import schedule
 from musixmatchapi import get_random_song_from_main_albums, clean_track_name, get_lyrics, get_random_lyric
 
 load_dotenv()
@@ -33,15 +35,23 @@ def post_lyrics_as_tweet():
     random_line = get_random_lyric(lyrics)
     if random_line:
         tweet = f"{random_line}"
-        #try:
-    response = Client.create_tweet(text=tweet)
-    print(response) 
-    print("Tweet posted successfully!")
-        #except tweepy.error.TweepError as e:  
-            #print(f"Error posting tweet: {e}")
+        try:
+            response = Client.create_tweet(text=tweet)
+            print(response) 
+            print("Tweet posted successfully!")
+        except tweepy.error.TweepError as e:  
+            print(f"Error posting tweet: {e}")
+
+def main():
+    schedule.every(30).minutes.do(post_lyrics_as_tweet) 
+    while True:
+        schedule.run_pending()
+        # Sleep for 30 seconds to avoid exceeding rate limits
+        time.sleep(30)
 
 if __name__ == "__main__":
-    post_lyrics_as_tweet()
+    main()
+
 
 
 
