@@ -1,56 +1,68 @@
-import os
-from dotenv import load_dotenv
-import tweepy
 import time
-import schedule
-from musixmatchapi import get_random_song_from_main_albums, clean_track_name, get_lyrics, get_random_lyric
+from requests_oauthlib import OAuth1Session
+import os
+import random
+from musixmatchapi import get_random_song_from_main_albums, get_lyrics
 
-load_dotenv()
+# Set your consumer key and consumer secret
+consumer_key = os.environ.get("CONSUMER_KEY")
+consumer_secret = os.environ.get("CONSUMER_SECRET")
 
-def get_twitter_api():
-    consumer_key = os.getenv("CONSUMER_KEY")
-    consumer_secret = os.getenv("CONSUMER_SECRET")
-    access_token = os.getenv("ACCESS_TOKEN")
-    access_token_secret = os.getenv("ACCESS_TOKEN_SECRET")
-    
-    client = tweepy.Client(consumer_key=consumer_key, consumer_secret=consumer_secret, access_token=access_token, access_token_secret=access_token_secret)
-    return client
+# Set your existing access token and access token secret
+access_token = os.environ.get("ACCESS_TOKEN")
+access_token_secret = os.environ.get("ACCESS_TOKEN_SECRET")
 
-def post_lyrics_as_tweet():
-    Client = get_twitter_api()
+# OAuth 1.0a authentication using existing tokens
+oauth = OAuth1Session(
+    consumer_key,
+    client_secret=consumer_secret,
+    resource_owner_key=access_token,
+    resource_owner_secret=access_token_secret,
+)
 
+def tweet_random_lyric():
+    # Get a random song and its lyrics
     song_info = get_random_song_from_main_albums()
     if song_info is None:
         print("No songs were found.")
         return
 
     track_id, track_name = song_info
-    clean_name = clean_track_name(track_name)
     lyrics = get_lyrics(track_id)
-
     if lyrics is None:
-        print(f"Failed to retrieve lyrics for {clean_name}.")
+        print("Failed to retrieve lyrics.")
         return
 
-    random_line = get_random_lyric(lyrics)
-    if random_line:
-        tweet = f"{random_line}"
-        try:
-            response = Client.create_tweet(text=tweet)
-            print(response) 
-            print("Tweet posted successfully!")
-        except tweepy.error.TweepError as e:  
-            print(f"Error posting tweet: {e}")
+    # Select a random line from the lyrics
+    lines = lyrics.split("\n")
+    random_line = random.choice(lines)
+
+    tweet_text = f"{random_line}"
+
+    # Make the request
+    response = oauth.post(
+        "https://api.twitter.com/2/tweets",
+        json={"text": tweet_text},
+    )
+
+    if response.status_code != 201:
+        print("Request returned an error:", response.status_code, response.text)
+        return
+
+    print("Tweeted:", tweet_text)
 
 def main():
-    schedule.every(30).minutes.do(post_lyrics_as_tweet) 
     while True:
-        schedule.run_pending()
-        # Sleep for 30 seconds to avoid exceeding rate limits
-        time.sleep(30)
+        tweet_random_lyric()
+        # Wait for 30 minutes before tweeting again
+        time.sleep(30 * 60)
 
 if __name__ == "__main__":
     main()
+
+
+
+
 
 
 
