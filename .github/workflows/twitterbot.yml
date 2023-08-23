@@ -34,9 +34,10 @@ jobs:
           echo "CONSUMER_SECRET: $CONSUMER_SECRET"
           echo "ACCESS_TOKEN: $ACCESS_TOKEN"
           echo "ACCESS_TOKEN_SECRET: $ACCESS_TOKEN_SECRET"
-
       - name: Run Twitter Bot
         run: python lyrics.py
+
+
 
 
 
