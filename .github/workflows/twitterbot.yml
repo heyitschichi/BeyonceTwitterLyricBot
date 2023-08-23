@@ -6,7 +6,7 @@ on:
 
 jobs:
   run_bot:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     env:
       CONSUMER_KEY: ${{ secrets.CONSUMER_KEY }}
       CONSUMER_SECRET: ${{ secrets.CONSUMER_SECRET }}
@@ -31,17 +31,17 @@ jobs:
       - name: Get Random Lyric
         id: random_lyric
         run: |
-          echo "::set-env name=LYRIC::$(python musixmatch.py)"  # Set LYRIC environment variable
+          echo "Random Lyric::$(python musixmatch.py)" >> $GITHUB_ENV
 
       - name: Debug Print Random Lyric
         run: |
-          echo "Random Lyric: ${{ env.LYRIC }}"
+          echo "Random Lyric: $Random Lyric"
 
       - name: Tweet
         uses: snow-actions/tweet@v1.4.0
         with:
           status: |
-            ${{ env.LYRIC }}
+            ${{ steps.random_lyric.outputs.random_lyric }}
 
 
 
