@@ -8,11 +8,11 @@ jobs:
   run_bot:
     runs-on: windows-latest  
     env:
-          CONSUMER_KEY: ${{ secrets.CONSUMER_KEY }}
-          CONSUMER_SECRET: ${{ secrets.CONSUMER_SECRET }}
-          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-          ACCESS_TOKEN_SECRET: ${{ secrets.ACCESS_TOKEN_SECRET }}
-          MUSIXMATCH_API_KEY: ${{ secrets.MUSIXMATCH_API_KEY }}
+      CONSUMER_KEY: ${{ secrets.CONSUMER_KEY }}
+      CONSUMER_SECRET: ${{ secrets.CONSUMER_SECRET }}
+      ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+      ACCESS_TOKEN_SECRET: ${{ secrets.ACCESS_TOKEN_SECRET }}
+      MUSIXMATCH_API_KEY: ${{ secrets.MUSIXMATCH_API_KEY }}
     
     steps:
       - name: Checkout code
@@ -35,8 +35,16 @@ jobs:
           echo "ACCESS_TOKEN: $ACCESS_TOKEN"
           echo "ACCESS_TOKEN_SECRET: $ACCESS_TOKEN_SECRET"
 
-      - name: Run Twitter Bot
+      - name: Get Random Lyric
+        id: random_lyric
         run: python lyrics.py
+
+      - name: Tweet
+        uses: snow-actions/tweet@v1.4.0
+        with:
+          status: |
+            ${{ steps.random_lyric.outputs.random_lyric }}
+
 
 
 
