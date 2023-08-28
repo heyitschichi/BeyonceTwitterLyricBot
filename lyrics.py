@@ -2,6 +2,7 @@ import time
 from requests_oauthlib import OAuth1Session
 import os
 import random
+import sys
 from musixmatchapi import get_random_song_from_main_albums, get_lyrics
 
 # Set your consumer key and consumer secret
@@ -50,12 +51,15 @@ def tweet_random_lyric():
         return
 
     print("Tweeted:", tweet_text)
+    return tweet_text
 
 def main():
     while True:
         tweet_random_lyric()
         # Wait for 30 minutes before tweeting again
         time.sleep(1 * 60)
+        
+        sys.exit(tweet_random_lyric())
 
 if __name__ == "__main__":
     main()
