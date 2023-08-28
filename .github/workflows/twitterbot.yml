@@ -24,7 +24,8 @@ jobs:
           pip install -r requirements.txt
 
       - name: Set Musixmatch API Key
-        run: echo "MUSIXMATCH_API_KEY=${{ secrets.MUSIXMATCH_API_KEY }}" >> $GITHUB_ENV
+        env: 
+          musixmatch-api-key: ${{ secrets.MUSIXMATCH_API_KEY }}
 
       - name: Get random lyric
         id: get_lyric
