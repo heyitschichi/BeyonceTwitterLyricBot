@@ -23,10 +23,13 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
+      - name: Set Musixmatch API Key
+        run: echo "MUSIXMATCH_API_KEY=${{ secrets.MUSIXMATCH_API_KEY }}" >> $GITHUB_ENV
+
       - name: Get random lyric
         id: get_lyric
         run: |
-          MUSIXMATCH_API_KEY=${{ secrets.MUSIXMATCH_API_KEY }} python lyrics.py
+          python lyrics.py
           echo "::set-output name=lyric::$(cat random_lyric.txt)"
 
       - name: Send Tweet
