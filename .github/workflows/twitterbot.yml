@@ -26,7 +26,7 @@ jobs:
       - name: Get random lyric
         id: get_lyric
         run: |
-          python lyrics.py
+          MUSIXMATCH_API_KEY=${{ secrets.MUSIXMATCH_API_KEY }} python lyrics.py
           echo "::set-output name=lyric::$(cat random_lyric.txt)"
 
       - name: Send Tweet
@@ -37,6 +37,7 @@ jobs:
           consumer-secret: ${{ secrets.CONSUMER_SECRET }}
           access-token: ${{ secrets.ACCESS_TOKEN }}
           access-token-secret: ${{ secrets.ACCESS_TOKEN_SECRET }}
+
 
 
 
