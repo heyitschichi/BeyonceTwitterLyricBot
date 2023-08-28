@@ -25,10 +25,8 @@ jobs:
 
       - name: Run script
         run: |
-          while true; do
             python lyrics.py
-            sleep 60  # Wait for 1 minute
-          done
+          
 
 
 
