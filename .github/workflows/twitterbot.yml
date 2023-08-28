@@ -1,18 +1,13 @@
-name: Twitter Bot
+name: Tweet Lyrics
 
 on:
   push:
-    branches: [main]
+    branches:
+      - main  # Adjust the branch name as needed
 
 jobs:
-  run_bot:
-    runs-on: windows-latest  
-    env:
-          CONSUMER_KEY: ${{ secrets.CONSUMER_KEY }}
-          CONSUMER_SECRET: ${{ secrets.CONSUMER_SECRET }}
-          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-          ACCESS_TOKEN_SECRET: ${{ secrets.ACCESS_TOKEN_SECRET }}
-          MUSIXMATCH_API_KEY: ${{ secrets.MUSIXMATCH_API_KEY }}
+  tweet:
+    runs-on: ubuntu-latest
     
     steps:
       - name: Checkout code
@@ -26,16 +21,15 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install -r requirements.txt
-          
-      - name: Debug Print Environment Variables
+          pip install requests_oauthlib musixmatchapi
+
+      - name: Run script
         run: |
-          echo "CONSUMER_KEY: $CONSUMER_KEY"
-          echo "CONSUMER_SECRET: $CONSUMER_SECRET"
-          echo "ACCESS_TOKEN: $ACCESS_TOKEN"
-          echo "ACCESS_TOKEN_SECRET: $ACCESS_TOKEN_SECRET"
-      - name: Run Twitter Bot
-        run: python lyrics.py
+          while true; do
+            python lyrics.py
+            sleep 60  # Wait for 1 minute
+          done
+
 
 
 
