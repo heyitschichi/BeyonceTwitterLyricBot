@@ -13,13 +13,6 @@ consumer_secret = os.environ.get("CONSUMER_SECRET")
 access_token = os.environ.get("ACCESS_TOKEN")
 access_token_secret = os.environ.get("ACCESS_TOKEN_SECRET")
 
-# OAuth 1.0a authentication using existing tokens
-oauth = OAuth1Session(
-    consumer_key,
-    client_secret=consumer_secret,
-    resource_owner_key=access_token,
-    resource_owner_secret=access_token_secret,
-)
 
 def tweet_random_lyric():
     # Get a random song and its lyrics
@@ -39,6 +32,14 @@ def tweet_random_lyric():
     random_line = random.choice(lines)
 
     tweet_text = f"{random_line}"
+
+    # OAuth 1.0a authentication using existing tokens
+    oauth = OAuth1Session(
+    consumer_key,
+    client_secret=consumer_secret,
+    resource_owner_key=access_token,
+    resource_owner_secret=access_token_secret,
+)
 
     # Make the request
     response = oauth.post(
