@@ -37,8 +37,8 @@ jobs:
       - name: Get random lyric
         id: get_lyric
         run: |
-          python lyrics.py
-          echo "::set-output name=lyric::$(cat random_lyric.txt)"
+           lyric=$(python lyrics.py)
+           echo "::set-output name=lyric::$lyric"
 
       - name: Send Tweet
         uses: ethomson/send-tweet-action@v1
