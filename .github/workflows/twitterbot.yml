@@ -8,7 +8,13 @@ on:
 jobs:
   tweet:
     runs-on: ubuntu-latest
-    
+    env:
+      MUSIXMATCH_API_KEY: ${{ secrets.MUSIXMATCH_API_KEY }}
+      CONSUMER_KEY: ${{ secrets.CONSUMER_KEY }}
+      CONSUMER_SECRET: ${{ secrets.CONSUMER_SECRET }}
+      ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+      ACCESS_TOKEN_SECRET: ${{ secrets.ACCESS_TOKEN_SECRET }}
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -23,11 +29,15 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
+      - name: Set Musixmatch API Key
+        run: |
+          echo "MUSIXMATCH_API_KEY=${{ secrets.MUSIXMATCH_API_KEY }}" >> $GITHUB_ENV
+
       - name: Get random lyric
         id: get_lyric
         run: |
-          python lyrics.py
-          echo "::set-output name=lyric::$(cat random_lyric.txt)"
+           lyric=$(python lyrics.py)
+           echo "::set-output name=lyric::$lyric"
 
       - name: Send Tweet
         uses: ethomson/send-tweet-action@v1
@@ -37,6 +47,8 @@ jobs:
           consumer-secret: ${{ secrets.CONSUMER_SECRET }}
           access-token: ${{ secrets.ACCESS_TOKEN }}
           access-token-secret: ${{ secrets.ACCESS_TOKEN_SECRET }}
+
+
 
 
 
