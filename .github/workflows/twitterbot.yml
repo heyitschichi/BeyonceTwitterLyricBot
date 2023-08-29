@@ -8,6 +8,8 @@ on:
 jobs:
   tweet:
     runs-on: ubuntu-latest
+    env:
+      MUSIXMATCH_API_KEY: ${{ secrets.MUSIXMATCH_API_KEY }}
     
     steps:
       - name: Checkout code
@@ -25,8 +27,7 @@ jobs:
 
       - name: Set Musixmatch API Key
         run: |
-          MUSIXMATCH_API_KEY: ${{ secrets.MUSIXMATCH_API_KEY }}
-
+          echo "MUSIXMATCH_API_KEY=${{ secrets.MUSIXMATCH_API_KEY }}" >> $GITHUB_ENV
 
       - name: Get random lyric
         id: get_lyric
