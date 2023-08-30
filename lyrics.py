@@ -58,7 +58,7 @@ def main():
     while True:
         tweet_random_lyric()
         # Wait for 30 minutes before tweeting again
-        time.sleep(1 * 60)
+        time.sleep(30 * 60)
         
         sys.exit(tweet_random_lyric())
 
