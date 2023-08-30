@@ -33,20 +33,14 @@ jobs:
         run: |
           echo "MUSIXMATCH_API_KEY=${{ secrets.MUSIXMATCH_API_KEY }}" >> $GITHUB_ENV
 
-      - name: Get random lyric
-        id: get_lyric
-        run: |
-           lyric=$(python lyrics.py)
-           echo "::set-output name=lyric::$lyric"
-
       - name: Send Tweet
-        uses: ethomson/send-tweet-action@v1
-        with:
-          status: ${{ steps.get_lyric.outputs.lyric }}
-          consumer-key: ${{ secrets.CONSUMER_KEY }}
-          consumer-secret: ${{ secrets.CONSUMER_SECRET }}
-          access-token: ${{ secrets.ACCESS_TOKEN }}
-          access-token-secret: ${{ secrets.ACCESS_TOKEN_SECRET }}
+        env:
+           CONSUMER_KEY: ${{ secrets.CONSUMER_KEY }}
+           CONSUMER_SECRET: ${{ secrets.CONSUMER_SECRET }}
+           ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+           ACCESS_TOKEN_SECRET: ${{ secrets.ACCESS_TOKEN_SECRET }}
+        run: |
+          python lyrics.py  
 
 
 
