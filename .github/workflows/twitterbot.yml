@@ -3,54 +3,36 @@ name: Tweet Random Lyric
 on:
   push:
     branches:
-      - main  # Adjust the branch name as needed
-      
+      - main  
+
 jobs:
-  tweet:
+  build:
+
     runs-on: ubuntu-latest
-    env:
-      MUSIXMATCH_API_KEY: ${{ secrets.MUSIXMATCH_API_KEY }}
-      CONSUMER_KEY: ${{ secrets.CONSUMER_KEY }}
-      CONSUMER_SECRET: ${{ secrets.CONSUMER_SECRET }}
-      ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-      ACCESS_TOKEN_SECRET: ${{ secrets.ACCESS_TOKEN_SECRET }}
+    strategy:
+      matrix:
+        python-version: ["3.11"]
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Set up Python
-        uses: actions/setup-python@v2
+      - uses: actions/checkout@v4
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v4
         with:
-          python-version: 3.11.3
-
+          python-version: ${{ matrix.python-version }}
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install -r requirements.txt
-
-      - name: Set Musixmatch API Key
-        run: |
-          echo "MUSIXMATCH_API_KEY=${{ secrets.MUSIXMATCH_API_KEY }}" >> $GITHUB_ENV
-
-      - name: Get random lyric
-        id: get_lyric
-        run: |
-           lyric=$(python lyrics.py)
-           echo "::set-output name=lyric::$lyric"
-
-      - name: Send Tweet
-        uses: ethomson/send-tweet-action@v1
-        with:
-          status: ${{ steps.get_lyric.outputs.lyric }}
-          consumer-key: ${{ secrets.CONSUMER_KEY }}
-          consumer-secret: ${{ secrets.CONSUMER_SECRET }}
-          access-token: ${{ secrets.ACCESS_TOKEN }}
-          access-token-secret: ${{ secrets.ACCESS_TOKEN_SECRET }}
-
-
-
-
+          pip install ruff pytest
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi 
+          
+      - name: executing python script
+        env:
+            MUSIXMATCH_API_KEY: ${{ secrets.MUSIXMATCH_API_KEY }}
+            ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+            ACCESS_TOKEN_SECRET: ${{ secrets.ACCESS_TOKEN_SECRET }}
+            CONSUMER_KEY: ${{ secrets.CONSUMER_KEY }}
+            CONSUMER_SECRET: ${{ secrets.CONSUMER_SECRET }}
+        run: python lyrics.py
 
 
 
