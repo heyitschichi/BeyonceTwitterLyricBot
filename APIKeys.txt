@@ -1,0 +1,47 @@
+Twitrer Keys:
+Bearer Token:
+AAAAAAAAAAAAAAAAAAAAAIe1pAEAAAAAHuN5J4%2FmI3xZRdipc0qZ71ukmFU%3DmeKNLABUoin8IhGyBn2t6swOYzppg1TL15Y9xQLU6FuVOW7lFd
+
+Access Token:
+1686807752289435663-m6fHRFaT1PpA7XMkg6XFMalGUuKphy
+
+Access Token Secret: 
+Thk2gCt2SVUAHgIj1bcTfmKUcEwg1GOeFTgpjgGvudcW9
+
+API Key (Consumer Key):
+k7XxWAJmqkGhKHwpLVhak75eP
+
+API Key Secret (Consumer Secret):
+Uzco0KmZbVs47q88mscnzIRHbiut2nfwkImkdxP61PBMB7sSBb
+
+Client ID:
+ZmNPaThNeE10MVVidnVBeUFnclo6MTpjaQ
+
+Client Secret:
+qrYUst5LVUAMepncaUv5hLaMtVaUwMVmrY_-cmF-vGTE9m7hAb
+
+Genius Keys:
+Client ID:
+0iYkw854HhMrM3y3eHEyWEmZuDbBDwthJHfOuyaQtC_gnBYgQ_nxMfCdw6UAetXN
+
+Client Secret:
+4b--6hNKR7ZortFEl3cFndir3N6veeARHsKXTNgA-msWoTMX2uBWuLgKObY9eUWDGnDV_E-clzEOrjYmW6cpQg
+
+Client Access Token:
+rYxKG_9Oo2L1AZZ33_1fUF4rcMF5grRrrM9lM7Ze8bvberyk-Y73LgnYoclbQVEN
+
+MusixMatch Keys:
+API:
+c46d946f137c163d3a7be504963d79f3
+
+
+Anilist:
+Secret:
+mukMUR1HrNOicrPlgCROhenlohe6FaW1EprL9dE0
+
+ID:
+12748
+
+Redirect URl:
+http://127.0.0.1:5000
+
